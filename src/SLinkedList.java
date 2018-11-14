@@ -4,17 +4,23 @@ import java.util.LinkedList;
  * 单链表
  */
 public class SLinkedList {
-    int length;
-    SNode head;
-    SNode last;
+    private int length;
+    private SNode head;
+    private SNode last;
+    public SNode getHead(){
+        return head;
+    }
+    public int length(){
+        return length;
+    }
     public SLinkedList(int[] array){
         this.length = array.length;
         for(int i = 0;i<length;i++){
             SNode newNode = new SNode(array[i]);
             if(length==0){
-                head.next = newNode;
+                head.next = last;
             }
-            last.next = newNode;
+            last = newNode;
             last = last.next;
             length = length + 1;
         }
@@ -26,6 +32,15 @@ public class SLinkedList {
         last = newNode;
         length = length + 1;
     }
+    public static void main(String[] args){
+        int[] array = {0,1,3,4,5};
+        SLinkedList sLinkedList = new SLinkedList(array);
+        SNode head = sLinkedList.getHead();
+        head = head.next;
+        if(head.next!=null){
+            System.out.println(head.value);
+        }
+    }
 }
 
 /**
@@ -36,9 +51,6 @@ class SNode{
     int value;
     public SNode(int value){
         this.value = value;
-    }
-    public int getValue(){
-        return value;
     }
     public void setValue(int value){
         this.value = value;
