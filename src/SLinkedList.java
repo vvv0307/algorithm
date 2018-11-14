@@ -16,6 +16,7 @@ public class SLinkedList {
             }
             last.next = newNode;
             last = last.next;
+            length = length + 1;
         }
 
     }
