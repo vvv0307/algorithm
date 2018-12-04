@@ -23,12 +23,35 @@ public class SLinkedList {
         last = first;
     }
     public void addNode(int newValue){
+        last.next = new SNode(newValue);
+        last = last.next;
+    }
 
+    public boolean addNode(int newValue,int index){
+        if(index <= 0 || index >= this.length){
+            throw new ArrayIndexOutOfBoundsException();
+        }
+        if(index == 1){
+            SNode newSNode = new SNode(newValue);
+            newSNode.next = this.head.next;
+        }
+        SNode pre = this.head;
+        SNode next;
+        for(int i = 0;i<this.length;i++){
+            pre = pre.next;
+            if(i == (index -2)){
+                SNode newNode = new SNode(newValue);
+                next = pre.next;
+                pre.next = newNode;
+                newNode.next = next;
+            }
+        }
+        return true;
     }
     public static void main(String[] args){
         int[] array = {0,1,3,4,5};
         SLinkedList sLinkedList = new SLinkedList(array);
-        //System.out.println(sLinkedList.last.value);
+        sLinkedList.addNode(14,2);
         SNode sNode =sLinkedList.head.next;
         while (sNode != null){
             System.out.println(sNode.value);
